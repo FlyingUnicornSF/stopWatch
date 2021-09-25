@@ -1,0 +1,16 @@
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/MaterialIconsOutlined-Regular.otf'); /* For IE6-8 */
+  src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url('./fonts/MaterialIconsOutlined-Regular.otf') format('woff2'),
+    url('./fonts/MaterialIconsOutlined-Regular.otf') format('woff'),
+}
+
+@import 'material-icons/iconfont/material-icons.css';
+
+body {
+  font-size: 14px;
+}

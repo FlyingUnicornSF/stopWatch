@@ -3,8 +3,9 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./src/index.tsx",
   mode: "development",
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {
@@ -16,13 +17,35 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        test: /\.(ts|tsx)$/,
+        exclude: /node_modules/,
+        loader: 'ts-loader'
+      },
+      {
+        test: /\.css$/i,
+        use: [
+          "style-loader",
+          "css-loader",
+          // {
+          //   loader: 'css-loader',
+          //   options: {
+          //     modules: true,
+          //   },
+          // }
+        ],
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          "style-loader",
+          "css-loader",
+          'sass-loader',
+        ],
       },
     ],
   },
   resolve: {
-    extensions: ["*", ".js", ".jsx"],
+    extensions: [".js", ".jsx", '.tsx', '.ts'],
   },
   output: {
     // path: path.resolve(__dirname, "public/dist/"),
@@ -37,12 +60,6 @@ module.exports = {
       directory: path.join(__dirname, 'public'),
     },
     port: 3000,
-    // publicPath
-    // devMiddleware:{
-    //    publicPath: "https://localhost:3000/dist/",
-    // },
-    // hotOnly
-    // hot: "only",
   },
   plugins: [new webpack.HotModuleReplacementPlugin()],
 };
