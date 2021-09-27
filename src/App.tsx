@@ -1,7 +1,11 @@
 import React, { Component} from "react";
 import "./App.css";
 
-import {BaseButton, ButtonTypes} from './components/Buttons';
+import {
+  BaseButton,
+  ButtonTypes,
+  ButtonDesignTag
+} from './components/Buttons';
 
 class App extends Component{
   render(){
@@ -10,8 +14,32 @@ class App extends Component{
         <BaseButton
           text="Basic button"
           type={ButtonTypes.button}
+          buttonDesignTag={ButtonDesignTag.basicButton}
           distabled={true}
           visibile={true}
+        />
+        <BaseButton
+          text="Text button"
+          type={ButtonTypes.button}
+          buttonDesignTag={ButtonDesignTag.textButton}
+          distabled={true}
+          visibile={true}
+        />
+        <BaseButton
+          text="Text button"
+          type={ButtonTypes.button}
+          buttonDesignTag={ButtonDesignTag.textButton}
+          distabled={true}
+          visibile={true}
+          leadingIcon={'search'}
+        />
+        <BaseButton
+          text=""
+          type={ButtonTypes.button}
+          buttonDesignTag={ButtonDesignTag.textButton}
+          distabled={true}
+          visibile={true}
+          leadingIcon={'close'}
         />
         <p> Hello, World! </p>
       </div>
