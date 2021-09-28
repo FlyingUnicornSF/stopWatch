@@ -22,6 +22,7 @@ export enum ButtonTypes {
 export enum ButtonDesignTag {
   basicButton = 'basicButton',
   textButton = 'textButton',
+  iconButton = 'iconButton',
 }
 
 function getClassName(designTag: ButtonDesignTag){
@@ -30,6 +31,8 @@ function getClassName(designTag: ButtonDesignTag){
       return styles.button;
     case ButtonDesignTag.textButton:
       return styles['text-button'];
+    case ButtonDesignTag.iconButton:
+      return styles['icon-button']
     default:
       return styles.button;
   }

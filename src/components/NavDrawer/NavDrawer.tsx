@@ -3,27 +3,45 @@ import {BaseButton, ButtonDesignTag, ButtonTypes} from '../Buttons';
 
 import styles from './SideNav.module.scss';
 
-interface NavDrawerProps {
-
+export interface NavDrawerProps {
+  closeNavDrawer:()=>void;
+  open: boolean;
 }
 
-export function NavDrawer(props: NavDrawerProps) {
-  const [open, setOpen] = useState(false);
+function getClassName(open: boolean): string{
+  if(open === true) {
+    return styles.sidenav;
+  } else {
+    return styles['sidenav-closed'];
+  }
+}
+
+/**
+ *
+ * @param props
+ * @returns JSX.Element side nav drawer
+ */
+export function NavDrawer(props: NavDrawerProps): JSX.Element {
+  const className = getClassName(props.open);
   return (
     <div
-      id="mySidenav"
-      className="sidenav"
+      id="side-nav-drawer"
+      className={className}
     >
       <BaseButton
         text={''}
         type={ButtonTypes.button}
-        onClick={()=>setOpen(false)}
+        onClick={()=>props.closeNavDrawer()}
         distabled={false}
         visibile={true}
         buttonDesignTag={ButtonDesignTag.textButton}
-        leadingIcon={'search'}
+        leadingIcon={'close'}
       />
-      <a href="#">About</a>
+      <a
+        href="#"
+      >
+        About
+      </a>
       <a href="#">Services</a>
       <a href="#">Clients</a>
       <a href="#">Contact</a>
