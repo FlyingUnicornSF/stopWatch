@@ -1,7 +1,9 @@
 %drawer-shared {
-  height: 100%; /* 100% Full-height */
+  // height: 100%; /* 100% Full-height */
+  height: 100vh;
   // width: 250px; /* 0 width - change this with JavaScript */
-  position: relative; /* Stay in place */
+  position: absolute; /* Stay in place */
+  // position: relative;
   z-index: 1; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
@@ -13,6 +15,10 @@
   flex-direction: column;
   color: blue;
   background-color: white;
+  main {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 

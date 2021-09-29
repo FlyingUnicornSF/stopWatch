@@ -1,5 +1,4 @@
 import React from 'react';
-import { BaseButton, ButtonDesignTag, ButtonTypes } from '../Buttons';
 import { Drawer } from '../Drawer';
 import styles from './NavDrawer.module.scss';
 
@@ -9,15 +8,18 @@ interface NavDrawerProps {
 }
 
 function getContents(){
-  return(<>
-          <a
-            href="#"
-          >
-            About
-          </a>
-          <a href="#">Services</a>
-          <a href="#">Clients</a>
-          <a href="#">Contact</a></>)
+  return(
+    <>
+      <a
+        href="#"
+      >
+        About
+      </a>
+      <a href="#">Services</a>
+      <a href="#">Clients</a>
+      <a href="#">Contact</a>
+    </>
+  )
 }
 /**
  *

@@ -65,8 +65,8 @@
 .icon-button-light {
   @extend %button-shared;
   box-shadow: none;
-  background-color: blue;
-  color: white;
+  background-color: white;
+  color: blue;
   span {
     @extend %button-icon-shared;
     margin: 0px;

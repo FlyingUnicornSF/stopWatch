@@ -24,8 +24,6 @@ class App extends Component<Props, State>{
    * @param open if true, nav drawer open
    */
   openSideNav(open: boolean): void {
-  // openSideNav(action: string): void {
-    // if(action === 'open') {
     if(open === true) {
       console.log('open')
       this.setState({navDrawerOpen: true})
@@ -47,7 +45,7 @@ class App extends Component<Props, State>{
             open={navDrawerOpen}
             closeNavDrawer={() => this.openSideNav(false)}
           />
-          {/* <Stopwatch /> */}
+          <Stopwatch />
           <BaseButton
             text="Basic button"
             type={ButtonTypes.button}
@@ -94,7 +92,6 @@ class App extends Component<Props, State>{
             visibile={true}
             leadingIcon={'menu'}
           />
-          <div style={{backgroundColor: "blue", width: 'fit-content'}}>
           <BaseButton
             text=""
             type={ButtonTypes.button}
@@ -103,7 +100,6 @@ class App extends Component<Props, State>{
             visibile={true}
             leadingIcon={'menu'}
           />
-          </div>
           <p> Hello, World! </p>
         </main>
       </div>

@@ -54,7 +54,6 @@ function getWidth(open: boolean, width: string | undefined) {
  * @returns JSX.Element drawer
  */
 export function Drawer(props: DrawerProps): JSX.Element {
-  console.log('Drawer ', props)
   const className = getClassName(props.open);
   const width = getWidth(props.open, props.width);
   console.log(className)
@@ -64,7 +63,6 @@ export function Drawer(props: DrawerProps): JSX.Element {
       className={className}
       style={{width: width}}
       onMouseOut={()=>props.closeDrawer()}
-      // onBlur={()=>props.closeDrawer()}
     >
       <header
         style={{textAlign: 'center'}}
@@ -75,9 +73,9 @@ export function Drawer(props: DrawerProps): JSX.Element {
           onClick={()=>props.closeDrawer()}
           distabled={false}
           visibile={true}
-          buttonDesignTag={ButtonDesignTag.iconButton}
+          buttonDesignTag={ButtonDesignTag.iconButtonLight}
           leadingIcon={'close'}
-          styleOverRide={{ position: 'relative', top: '-0.8rem', float: 'right', marginRight: '-0.8rem', background: 'blue'}}
+          styleOverRide={{ position: 'relative', top: '-0.8rem', float: 'right', marginRight: '-0.8rem'}}
         />
         <h2>{props.title}</h2>
       </header>
