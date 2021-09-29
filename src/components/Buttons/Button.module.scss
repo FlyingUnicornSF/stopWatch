@@ -12,6 +12,7 @@
   font-weight: 500;
   letter-spacing: 0.0892857143em;
   max-width: fit-content;
+  height: 1.875rem;
   text-decoration: none;
   text-transform: uppercase;
   display: inline-flex;
@@ -55,8 +56,17 @@
 .icon-button {
   @extend %button-shared;
   box-shadow: none;
-  background-color: white;
-  color: blue;
+  background-color: blue;
+  span {
+    @extend %button-icon-shared;
+    margin: 0px;
+  }
+}
+.icon-button-light {
+  @extend %button-shared;
+  box-shadow: none;
+  background-color: blue;
+  color: white;
   span {
     @extend %button-icon-shared;
     margin: 0px;

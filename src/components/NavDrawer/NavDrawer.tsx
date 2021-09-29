@@ -1,50 +1,39 @@
-import React, { useState } from 'react';
-import {BaseButton, ButtonDesignTag, ButtonTypes} from '../Buttons';
+import React from 'react';
+import { BaseButton, ButtonDesignTag, ButtonTypes } from '../Buttons';
+import { Drawer } from '../Drawer';
+import styles from './NavDrawer.module.scss';
 
-import styles from './SideNav.module.scss';
-
-export interface NavDrawerProps {
-  closeNavDrawer:()=>void;
+interface NavDrawerProps {
+  closeNavDrawer: () => void;
   open: boolean;
 }
 
-function getClassName(open: boolean): string{
-  if(open === true) {
-    return styles.sidenav;
-  } else {
-    return styles['sidenav-closed'];
-  }
+function getContents(){
+  return(<>
+          <a
+            href="#"
+          >
+            About
+          </a>
+          <a href="#">Services</a>
+          <a href="#">Clients</a>
+          <a href="#">Contact</a></>)
 }
-
 /**
  *
  * @param props
  * @returns JSX.Element side nav drawer
  */
 export function NavDrawer(props: NavDrawerProps): JSX.Element {
-  const className = getClassName(props.open);
+  console.log("NavDrawer", props)
   return (
-    <div
-      id="side-nav-drawer"
-      className={className}
-    >
-      <BaseButton
-        text={''}
-        type={ButtonTypes.button}
-        onClick={()=>props.closeNavDrawer()}
-        distabled={false}
-        visibile={true}
-        buttonDesignTag={ButtonDesignTag.textButton}
-        leadingIcon={'close'}
-      />
-      <a
-        href="#"
-      >
-        About
-      </a>
-      <a href="#">Services</a>
-      <a href="#">Clients</a>
-      <a href="#">Contact</a>
-    </div>
+    <Drawer
+      closeDrawer={() => props.closeNavDrawer()}
+      title="Side Nav Bar"
+      open={props.open}
+      position={'left'}
+      width={'250px'}
+      contents={getContents()}
+    />
   )
 }

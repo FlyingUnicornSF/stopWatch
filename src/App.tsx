@@ -1,18 +1,20 @@
-import React, { Component} from "react";
+import React, { Component } from "react";
 import "./App.css";
 
-import {BaseButton,  ButtonTypes,  ButtonDesignTag} from './components/Buttons';
-import {NavDrawer} from './components/NavDrawer';
+import { BaseButton, ButtonTypes, ButtonDesignTag } from './components/Buttons';
+import { NavDrawer } from './components/NavDrawer';
 import Stopwatch from './components/Stopwatch/Stopwatch';
+import { AppHeader } from './components/AppHeader';
 
-interface Props {}
+
+interface Props { }
 interface State {
   navDrawerOpen: boolean
 }
 class App extends Component<Props, State>{
-  constructor(props:Props){
+  constructor(props: Props) {
     super(props);
-    this.state ={
+    this.state = {
       navDrawerOpen: false,
     }
   }
@@ -21,67 +23,89 @@ class App extends Component<Props, State>{
    *
    * @param open if true, nav drawer open
    */
-  openSideNav(open: boolean): void{
-    this.setState({navDrawerOpen: open})
+  openSideNav(open: boolean): void {
+  // openSideNav(action: string): void {
+    // if(action === 'open') {
+    if(open === true) {
+      console.log('open')
+      this.setState({navDrawerOpen: true})
+    } else {
+      console.log('close')
+      this.setState({navDrawerOpen: false})
+    }
   }
 
-  render(){
+  render() {
     const navDrawerOpen = this.state.navDrawerOpen;
-    return(
+    return (
       <div className="App">
-        <NavDrawer
-          open={navDrawerOpen}
-          closeNavDrawer={()=>this.openSideNav(false)}
+        <AppHeader
+          openSideNav={() => this.openSideNav(true)}
         />
-        <Stopwatch />
-        <BaseButton
-          text="Basic button"
-          type={ButtonTypes.button}
-          buttonDesignTag={ButtonDesignTag.basicButton}
-          distabled={true}
-          visibile={true}
-          leadingIcon={'search'}
-        />
-        <BaseButton
-          text="Basic button"
-          type={ButtonTypes.button}
-          buttonDesignTag={ButtonDesignTag.basicButton}
-          distabled={true}
-          visibile={true}
-        />
-        <BaseButton
-          text="Text button"
-          type={ButtonTypes.button}
-          buttonDesignTag={ButtonDesignTag.textButton}
-          distabled={true}
-          visibile={true}
-        />
-        <BaseButton
-          text="Text button"
-          type={ButtonTypes.button}
-          buttonDesignTag={ButtonDesignTag.textButton}
-          distabled={true}
-          visibile={true}
-          leadingIcon={'search'}
-        />
-        <BaseButton
-          text=""
-          type={ButtonTypes.button}
-          buttonDesignTag={ButtonDesignTag.iconButton}
-          distabled={true}
-          visibile={true}
-          leadingIcon={'close'}
-        />
-        <BaseButton
-          text=""
-          type={ButtonTypes.button}
-          buttonDesignTag={ButtonDesignTag.iconButton}
-          distabled={true}
-          visibile={true}
-          leadingIcon={'menu'}
-          onClick={()=>{this.openSideNav(true)}}
-        />
-        <p> Hello, World! </p>
+        <main>
+          <NavDrawer
+            open={navDrawerOpen}
+            closeNavDrawer={() => this.openSideNav(false)}
+          />
+          {/* <Stopwatch /> */}
+          <BaseButton
+            text="Basic button"
+            type={ButtonTypes.button}
+            buttonDesignTag={ButtonDesignTag.basicButton}
+            distabled={true}
+            visibile={true}
+            leadingIcon={'search'}
+          />
+          <BaseButton
+            text="Basic button"
+            type={ButtonTypes.button}
+            buttonDesignTag={ButtonDesignTag.basicButton}
+            distabled={true}
+            visibile={true}
+          />
+          <BaseButton
+            text="Text button"
+            type={ButtonTypes.button}
+            buttonDesignTag={ButtonDesignTag.textButton}
+            distabled={true}
+            visibile={true}
+          />
+          <BaseButton
+            text="Text button"
+            type={ButtonTypes.button}
+            buttonDesignTag={ButtonDesignTag.textButton}
+            distabled={true}
+            visibile={true}
+            leadingIcon={'search'}
+          />
+          <BaseButton
+            text=""
+            type={ButtonTypes.button}
+            buttonDesignTag={ButtonDesignTag.iconButton}
+            distabled={true}
+            visibile={true}
+            leadingIcon={'close'}
+          />
+          <BaseButton
+            text=""
+            type={ButtonTypes.button}
+            buttonDesignTag={ButtonDesignTag.iconButton}
+            distabled={true}
+            visibile={true}
+            leadingIcon={'menu'}
+          />
+          <div style={{backgroundColor: "blue", width: 'fit-content'}}>
+          <BaseButton
+            text=""
+            type={ButtonTypes.button}
+            buttonDesignTag={ButtonDesignTag.iconButtonLight}
+            distabled={true}
+            visibile={true}
+            leadingIcon={'menu'}
+          />
+          </div>
+          <p> Hello, World! </p>
+        </main>
       </div>
     );
   }

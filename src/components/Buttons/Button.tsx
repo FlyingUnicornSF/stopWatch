@@ -11,6 +11,7 @@ interface BaseButtonProps {
   formId?: string;
   value?: string | number;
   leadingIcon?: string;
+  styleOverRide?: React.CSSProperties;
 }
 
 export enum ButtonTypes {
@@ -23,6 +24,7 @@ export enum ButtonDesignTag {
   basicButton = 'basicButton',
   textButton = 'textButton',
   iconButton = 'iconButton',
+  iconButtonLight = 'iconButtonLight'
 }
 
 function getClassName(designTag: ButtonDesignTag){
@@ -32,7 +34,9 @@ function getClassName(designTag: ButtonDesignTag){
     case ButtonDesignTag.textButton:
       return styles['text-button'];
     case ButtonDesignTag.iconButton:
-      return styles['icon-button']
+      return styles['icon-button'];
+    case ButtonDesignTag.iconButtonLight:
+      return styles['icon-button-light'];
     default:
       return styles.button;
   }
@@ -60,6 +64,7 @@ function getLeadingIcon(iconName: string | undefined){
   formId?: string;
   value?: string | number;
   leadingIcon?: string;
+  styleOverRide?: React.CSSProperties;
 ```
  * @returns JSX.Element button tag
  */
@@ -77,6 +82,7 @@ export function BaseButton(props: BaseButtonProps) {
         props.onClick ?
           props.onClick() : null
       }}
+      style={props.styleOverRide}
     >
       {leadingIcon}
       {props.text}

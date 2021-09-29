@@ -16,6 +16,7 @@ class Stopwatch extends React.Component<Props, States> {
     }
     this.startTimer = this.startTimer.bind(this);
     this.setTimeState = this.setTimeState.bind(this);
+    this.stopTimer = this.stopTimer.bind(this);
   }
 
   INDERVAL_ID: number | null = null;
@@ -23,7 +24,8 @@ class Stopwatch extends React.Component<Props, States> {
   startTimer() {
     // check if already an interval has been set up
     if (!this.INDERVAL_ID) {
-      this.INDERVAL_ID = window.setInterval(this.setTimeState, 1000);
+      // this.INDERVAL_ID = window.setInterval(this.setTimeState, 1000);
+      this.INDERVAL_ID = window.setInterval(this.setTimeState.bind(this), 1000);
     }
   }
 
@@ -47,6 +49,7 @@ class Stopwatch extends React.Component<Props, States> {
       })
     }
   }
+
   pauseTimer(){
     const paused = this.state.paused;
     if(paused) {
