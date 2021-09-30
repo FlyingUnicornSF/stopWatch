@@ -132,7 +132,7 @@ class Stopwatch extends React.Component<StopwatchProps, StopwatchStates> {
           text={'start'}
           type={ButtonTypes.button}
           onClick={() => this.startTimer()}
-          distabled={false}
+          disabled={false}
           visibile={true}
           buttonDesignTag={ButtonDesignTag.basicButton}
           styleOverRide={startButtonStyle}
@@ -141,7 +141,7 @@ class Stopwatch extends React.Component<StopwatchProps, StopwatchStates> {
           text={pauseButtonText}
           type={ButtonTypes.button}
           onClick={() => this.pauseTimer(paused, seconds)}
-          distabled={false}
+          disabled={false}
           visibile={true}
           buttonDesignTag={ButtonDesignTag.basicButton}
           styleOverRide={pauseButtonStyle}
@@ -150,7 +150,7 @@ class Stopwatch extends React.Component<StopwatchProps, StopwatchStates> {
           text={'stop'}
           type={ButtonTypes.button}
           onClick={() => this.stopTimer()}
-          distabled={false}
+          disabled={false}
           visibile={true}
           buttonDesignTag={ButtonDesignTag.basicButton}
           styleOverRide={stopButtonStyle}

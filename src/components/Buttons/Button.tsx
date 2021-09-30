@@ -5,7 +5,7 @@ interface BaseButtonProps {
   text: string;
   type: ButtonTypes;
   onClick?: () => void;
-  distabled: boolean;
+  disabled: boolean;
   visibile: boolean;
   buttonDesignTag: ButtonDesignTag;
   formId?: string;
@@ -23,8 +23,10 @@ export enum ButtonTypes {
 export enum ButtonDesignTag {
   basicButton = 'basicButton',
   textButton = 'textButton',
+  textButtonLight = 'textButtonLight',
   iconButton = 'iconButton',
-  iconButtonLight = 'iconButtonLight'
+  iconButtonLight = 'iconButtonLight',
+  tabButton = 'tabButton',
 }
 
 function getClassName(designTag: ButtonDesignTag){
@@ -33,10 +35,14 @@ function getClassName(designTag: ButtonDesignTag){
       return styles.button;
     case ButtonDesignTag.textButton:
       return styles['text-button'];
+    case ButtonDesignTag.textButtonLight:
+      return styles['text-button-light'];
     case ButtonDesignTag.iconButton:
       return styles['icon-button'];
     case ButtonDesignTag.iconButtonLight:
       return styles['icon-button-light'];
+    case ButtonDesignTag.tabButton:
+      return styles['tab-button'];
     default:
       return styles.button;
   }
@@ -58,7 +64,7 @@ function getLeadingIcon(iconName: string | undefined){
   text: string;
   type: ButtonTypes;
   onClick?: ()=>void;
-  distabled: boolean;
+  disabled: boolean;
   visibile: boolean;
   buttonDesignTag: ButtonDesignTag;
   formId?: string;
@@ -72,10 +78,12 @@ export function BaseButton(props: BaseButtonProps) {
   const designTag = props.buttonDesignTag;
   const buttonClassName = getClassName(designTag);
   const leadingIcon = getLeadingIcon(props.leadingIcon);
+  const role = props.buttonDesignTag === ButtonDesignTag.tabButton ? 'tab' : undefined;
   return (
     <button
       className={buttonClassName}
       form={props.formId}
+      role={role}
       type={props.type}
       value={props.value}
       onClick={() => {

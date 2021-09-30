@@ -1,3 +1,5 @@
+@import '../../ColorSchemes.scss';
+
 %drawer-shared {
   // height: 100%; /* 100% Full-height */
   height: 100vh;
@@ -9,15 +11,37 @@
   left: 0;
   overflow-x: hidden; /* Disable horizontal scroll */
   // padding-top: 60px; /* Place content 60px from the top */
-  padding: 1rem;
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
   display: flex;
   flex-direction: column;
   color: blue;
   background-color: white;
+  box-shadow: 5px 5px 4px -2px rgb(0 0 0 / 20%), 1px 4px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
   main {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+    padding: 2rem;
+  }
+  header {
+    text-align: center;
+    padding: 1rem;
+    background-color: $primary-color;
+    color: $white-color;
+    button {
+      position: relative;
+      top: -0.5rem;
+      margin-right: -0.5rem;
+      float: right;
+    }
+  }
+  footer {
+    height: 3rem;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: $primary-color-light;
   }
 }
 
@@ -31,5 +55,10 @@
   @extend %drawer-shared;
   width: 0px;
   padding: 0px;
-  // visibility: collapse;
+  // visibility: collapse; <== animation doesn't work
+  header {
+    h1, h2, h3 {
+      font-size: 0px;
+    }
+  }
 }

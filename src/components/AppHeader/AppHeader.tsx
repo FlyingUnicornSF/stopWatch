@@ -1,5 +1,6 @@
 import React from 'react';
 import { BaseButton, ButtonTypes, ButtonDesignTag } from '../Buttons';
+import styles from './AppHeader.module.scss';
 
 interface AppHeaderProps {
   openSideNav: ()=>void
@@ -8,19 +9,20 @@ interface AppHeaderProps {
 export function AppHeader(props: AppHeaderProps) {
   return (
     <header
-      style={{display: 'flex', flexDirection: 'row', alignItems: 'center', backgroundColor: 'blue'}}
+      style={{display: 'flex', flexDirection: 'row', alignItems: 'center', minHeight: '3rem'}}
+      className={styles['app-header']}
     >
       <BaseButton
         text=""
         type={ButtonTypes.button}
         buttonDesignTag={ButtonDesignTag.iconButton}
-        distabled={true}
+        disabled={true}
         visibile={true}
         leadingIcon={'menu'}
         onClick={() => props.openSideNav()}
         styleOverRide={{color: 'white'}}
       />
-      <h1>Cute Puppies Express!</h1>
+      {/* <h1>I'm the app header!!!</h1> */}
     </header>
   )
 }

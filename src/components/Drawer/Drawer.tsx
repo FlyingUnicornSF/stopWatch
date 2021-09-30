@@ -20,7 +20,6 @@ export enum DrawerPosition {
 }
 
 function getClassName(open: boolean): string{
-  console.log('getclassName, ', open)
   if(open === true) {
     return styles.drawer;
   } else {
@@ -36,6 +35,11 @@ function getWidth(open: boolean, width: string | undefined) {
     return '0px';
   }
 }
+
+// function closeOpen(props: DrawerProps, foo: string){
+//   console.log(foo)
+//   // props.closeDrawer()
+// }
 
 /**
  *
@@ -62,20 +66,17 @@ export function Drawer(props: DrawerProps): JSX.Element {
       id={props.id}
       className={className}
       style={{width: width}}
-      onMouseOut={()=>props.closeDrawer()}
+      // onMouseLeave={()=>props.closeDrawer()}
     >
-      <header
-        style={{textAlign: 'center'}}
-      >
+      <header>
         <BaseButton
           text={''}
           type={ButtonTypes.button}
           onClick={()=>props.closeDrawer()}
-          distabled={false}
+          disabled={false}
           visibile={true}
-          buttonDesignTag={ButtonDesignTag.iconButtonLight}
+          buttonDesignTag={ButtonDesignTag.iconButton}
           leadingIcon={'close'}
-          styleOverRide={{ position: 'relative', top: '-0.8rem', float: 'right', marginRight: '-0.8rem'}}
         />
         <h2>{props.title}</h2>
       </header>

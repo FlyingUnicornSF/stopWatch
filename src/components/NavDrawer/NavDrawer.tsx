@@ -1,6 +1,9 @@
 import React from 'react';
 import { Drawer } from '../Drawer';
+import { BaseButton, ButtonTypes, ButtonDesignTag } from '../../components/Buttons';
+
 import styles from './NavDrawer.module.scss';
+
 
 interface NavDrawerProps {
   closeNavDrawer: () => void;
@@ -21,6 +24,18 @@ function getContents(){
     </>
   )
 }
+
+function getFooter(){
+  return (
+    <BaseButton
+      text={'Log out'}
+      disabled={false}
+      type={ButtonTypes.button}
+      visibile={true}
+      buttonDesignTag={ButtonDesignTag.textButtonLight}
+    />
+  )
+}
 /**
  *
  * @param props
@@ -36,6 +51,7 @@ export function NavDrawer(props: NavDrawerProps): JSX.Element {
       position={'left'}
       width={'250px'}
       contents={getContents()}
+      footer={getFooter()}
     />
   )
 }

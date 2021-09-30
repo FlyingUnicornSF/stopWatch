@@ -35,6 +35,7 @@ class App extends Component<Props, State>{
 
   render() {
     const navDrawerOpen = this.state.navDrawerOpen;
+    console.log('navDrawerOpen state ,', navDrawerOpen)
     return (
       <div className="App">
         <AppHeader
@@ -45,12 +46,12 @@ class App extends Component<Props, State>{
             open={navDrawerOpen}
             closeNavDrawer={() => this.openSideNav(false)}
           />
-          <Stopwatch />
+          {/* <Stopwatch /> */}
           <BaseButton
             text="Basic button"
             type={ButtonTypes.button}
             buttonDesignTag={ButtonDesignTag.basicButton}
-            distabled={true}
+            disabled={false}
             visibile={true}
             leadingIcon={'search'}
           />
@@ -58,21 +59,21 @@ class App extends Component<Props, State>{
             text="Basic button"
             type={ButtonTypes.button}
             buttonDesignTag={ButtonDesignTag.basicButton}
-            distabled={true}
+            disabled={false}
             visibile={true}
           />
           <BaseButton
             text="Text button"
             type={ButtonTypes.button}
             buttonDesignTag={ButtonDesignTag.textButton}
-            distabled={true}
+            disabled={false}
             visibile={true}
           />
           <BaseButton
             text="Text button"
             type={ButtonTypes.button}
             buttonDesignTag={ButtonDesignTag.textButton}
-            distabled={true}
+            disabled={false}
             visibile={true}
             leadingIcon={'search'}
           />
@@ -80,7 +81,7 @@ class App extends Component<Props, State>{
             text=""
             type={ButtonTypes.button}
             buttonDesignTag={ButtonDesignTag.iconButton}
-            distabled={true}
+            disabled={false}
             visibile={true}
             leadingIcon={'close'}
           />
@@ -88,7 +89,7 @@ class App extends Component<Props, State>{
             text=""
             type={ButtonTypes.button}
             buttonDesignTag={ButtonDesignTag.iconButton}
-            distabled={true}
+            disabled={false}
             visibile={true}
             leadingIcon={'menu'}
           />
@@ -96,9 +97,16 @@ class App extends Component<Props, State>{
             text=""
             type={ButtonTypes.button}
             buttonDesignTag={ButtonDesignTag.iconButtonLight}
-            distabled={true}
+            disabled={false}
             visibile={true}
             leadingIcon={'menu'}
+          />
+          <BaseButton
+            text="click here"
+            type={ButtonTypes.button}
+            buttonDesignTag={ButtonDesignTag.tabButton}
+            disabled={false}
+            visibile={true}
           />
           <p> Hello, World! </p>
         </main>
