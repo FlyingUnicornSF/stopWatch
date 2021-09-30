@@ -14,7 +14,6 @@
   background-color: white;
 }
 
-
 .sidenav {
   @extend %sidenav-shared;
   width: 250px;
@@ -22,4 +21,8 @@
 .sidenav-closed {
   @extend %sidenav-shared;
   width: 0px;
+}
+
+.nav-drawer-items {
+  line-height: 3rem;
 }

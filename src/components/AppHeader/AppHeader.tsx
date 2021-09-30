@@ -15,8 +15,8 @@ export function AppHeader(props: AppHeaderProps) {
       <BaseButton
         text=""
         type={ButtonTypes.button}
-        buttonDesignTag={ButtonDesignTag.iconButton}
-        disabled={true}
+        buttonDesignTag={ButtonDesignTag.iconButtonContained}
+        disabled={false}
         visibile={true}
         leadingIcon={'menu'}
         onClick={() => props.openSideNav()}

@@ -66,7 +66,7 @@ export function Drawer(props: DrawerProps): JSX.Element {
       id={props.id}
       className={className}
       style={{width: width}}
-      // onMouseLeave={()=>props.closeDrawer()}
+      onMouseLeave={()=>props.closeDrawer()}
     >
       <header>
         <BaseButton
@@ -75,7 +75,7 @@ export function Drawer(props: DrawerProps): JSX.Element {
           onClick={()=>props.closeDrawer()}
           disabled={false}
           visibile={true}
-          buttonDesignTag={ButtonDesignTag.iconButton}
+          buttonDesignTag={ButtonDesignTag.iconButtonContained}
           leadingIcon={'close'}
         />
         <h2>{props.title}</h2>

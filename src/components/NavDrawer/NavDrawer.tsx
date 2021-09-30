@@ -10,22 +10,31 @@ interface NavDrawerProps {
   open: boolean;
 }
 
-function getContents(){
-  return(
+function getContents() {
+  return (
     <>
-      <a
-        href="#"
-      >
-        About
-      </a>
-      <a href="#">Services</a>
-      <a href="#">Clients</a>
-      <a href="#">Contact</a>
+      <div className={styles['nav-drawer-items']}>
+        <a href="">About</a>
+      </div>
+      <div className={styles['nav-drawer-items']}>
+        <a href="">Services</a>
+      </div>
+      <div className={styles['nav-drawer-items']}>
+
+        <a href="">Clients</a>
+      </div>
+      <div className={styles['nav-drawer-items']}>
+
+        <a href="">Contact</a>
+      </div>
+      <div className={styles['nav-drawer-items']}>
+        <a href="">Contact</a>
+      </div>
     </>
   )
 }
 
-function getFooter(){
+function getFooter() {
   return (
     <BaseButton
       text={'Log out'}

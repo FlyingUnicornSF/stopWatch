@@ -8,10 +8,12 @@ interface BaseButtonProps {
   disabled: boolean;
   visibile: boolean;
   buttonDesignTag: ButtonDesignTag;
+  areaSelected?: boolean;
   formId?: string;
   value?: string | number;
   leadingIcon?: string;
   styleOverRide?: React.CSSProperties;
+  role?: string;
 }
 
 export enum ButtonTypes {
@@ -24,9 +26,9 @@ export enum ButtonDesignTag {
   basicButton = 'basicButton',
   textButton = 'textButton',
   textButtonLight = 'textButtonLight',
-  iconButton = 'iconButton',
+  iconButtonContained = 'iconButtonContained',
   iconButtonLight = 'iconButtonLight',
-  tabButton = 'tabButton',
+  iconButton = 'iconButton',
 }
 
 function getClassName(designTag: ButtonDesignTag){
@@ -37,12 +39,12 @@ function getClassName(designTag: ButtonDesignTag){
       return styles['text-button'];
     case ButtonDesignTag.textButtonLight:
       return styles['text-button-light'];
+    case ButtonDesignTag.iconButtonContained:
+      return `${styles.button} ${styles['icon-button']}`;
     case ButtonDesignTag.iconButton:
-      return styles['icon-button'];
+      return `${styles['text-button']} ${styles['icon-button']}`;
     case ButtonDesignTag.iconButtonLight:
-      return styles['icon-button-light'];
-    case ButtonDesignTag.tabButton:
-      return styles['tab-button'];
+      return `${styles['text-button-light']} ${styles['icon-button']}`;
     default:
       return styles.button;
   }
@@ -51,10 +53,20 @@ function getClassName(designTag: ButtonDesignTag){
 function getLeadingIcon(iconName: string | undefined){
   if(typeof iconName === 'string') {
     return (
-      <span className={`${styles['button-icon']} material-icons-outlined`}>
+      <span className="material-icons-outlined">
           {iconName}
       </span>
     )
+  }
+}
+
+function getAreaSelected (areaSelected: boolean | undefined) {
+  if(areaSelected === true) {
+    return true;
+  } else if (areaSelected === false) {
+    return false;
+  } else {
+    return undefined
   }
 }
 /**
@@ -78,7 +90,8 @@ export function BaseButton(props: BaseButtonProps) {
   const designTag = props.buttonDesignTag;
   const buttonClassName = getClassName(designTag);
   const leadingIcon = getLeadingIcon(props.leadingIcon);
-  const role = props.buttonDesignTag === ButtonDesignTag.tabButton ? 'tab' : undefined;
+  const role = props.role ?? undefined;
+  const selected = getAreaSelected(props.areaSelected)
   return (
     <button
       className={buttonClassName}
@@ -91,6 +104,8 @@ export function BaseButton(props: BaseButtonProps) {
           props.onClick() : null
       }}
       style={props.styleOverRide}
+      aria-selected={selected}
+      disabled={props.disabled}
     >
       {leadingIcon}
       {props.text}
