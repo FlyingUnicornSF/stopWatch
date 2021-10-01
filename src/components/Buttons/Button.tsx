@@ -8,12 +8,13 @@ interface BaseButtonProps {
   disabled: boolean;
   visibile: boolean;
   buttonDesignTag: ButtonDesignTag;
-  areaSelected?: boolean;
+  ARIASelected?: boolean;
   formId?: string;
   value?: string | number;
   leadingIcon?: string;
   styleOverRide?: React.CSSProperties;
   role?: string;
+  tabIndex?: number;
 }
 
 export enum ButtonTypes {
@@ -91,7 +92,7 @@ export function BaseButton(props: BaseButtonProps) {
   const buttonClassName = getClassName(designTag);
   const leadingIcon = getLeadingIcon(props.leadingIcon);
   const role = props.role ?? undefined;
-  const selected = getAreaSelected(props.areaSelected)
+  const selected = getAreaSelected(props.ARIASelected)
   return (
     <button
       className={buttonClassName}
@@ -106,6 +107,7 @@ export function BaseButton(props: BaseButtonProps) {
       style={props.styleOverRide}
       aria-selected={selected}
       disabled={props.disabled}
+      tabIndex={props.tabIndex}
     >
       {leadingIcon}
       {props.text}

@@ -1,4 +1,9 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Link
+} from "react-router-dom";
+
 import { Drawer } from '../Drawer';
 import { BaseButton, ButtonTypes, ButtonDesignTag } from '../../components/Buttons';
 
@@ -12,25 +17,28 @@ interface NavDrawerProps {
 
 function getContents() {
   return (
-    <>
+
+    <nav>
+
       <div className={styles['nav-drawer-items']}>
-        <a href="">About</a>
+        <Link to="/">Home</Link>
       </div>
       <div className={styles['nav-drawer-items']}>
-        <a href="">Services</a>
+        <Link to="/SampleButtonPage">SampleButtonPage</Link>
       </div>
       <div className={styles['nav-drawer-items']}>
 
-        <a href="">Clients</a>
+        <Link to="/SampleTabPage">SampleTabPage</Link>
       </div>
       <div className={styles['nav-drawer-items']}>
 
-        <a href="">Contact</a>
+        <Link to="/users">Users</Link>
       </div>
       <div className={styles['nav-drawer-items']}>
-        <a href="">Contact</a>
+        <Link to="/users">Users</Link>
       </div>
-    </>
+    </nav>
+
   )
 }
 
@@ -51,7 +59,6 @@ function getFooter() {
  * @returns JSX.Element side nav drawer
  */
 export function NavDrawer(props: NavDrawerProps): JSX.Element {
-  console.log("NavDrawer", props)
   return (
     <Drawer
       closeDrawer={() => props.closeNavDrawer()}

@@ -60,7 +60,6 @@ function getWidth(open: boolean, width: string | undefined) {
 export function Drawer(props: DrawerProps): JSX.Element {
   const className = getClassName(props.open);
   const width = getWidth(props.open, props.width);
-  console.log(className)
   return (
     <div
       id={props.id}
@@ -75,7 +74,7 @@ export function Drawer(props: DrawerProps): JSX.Element {
           onClick={()=>props.closeDrawer()}
           disabled={false}
           visibile={true}
-          buttonDesignTag={ButtonDesignTag.iconButtonContained}
+          buttonDesignTag={ButtonDesignTag.iconButtonLight}
           leadingIcon={'close'}
         />
         <h2>{props.title}</h2>

@@ -15,14 +15,14 @@ export function AppHeader(props: AppHeaderProps) {
       <BaseButton
         text=""
         type={ButtonTypes.button}
-        buttonDesignTag={ButtonDesignTag.iconButtonContained}
+        buttonDesignTag={ButtonDesignTag.iconButtonLight}
         disabled={false}
         visibile={true}
         leadingIcon={'menu'}
         onClick={() => props.openSideNav()}
         styleOverRide={{color: 'white'}}
       />
-      {/* <h1>I'm the app header!!!</h1> */}
+      <h3>I'm the app header!!!</h3>
     </header>
   )
 }

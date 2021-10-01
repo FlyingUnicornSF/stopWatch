@@ -109,11 +109,17 @@
     background-color: $primary-color-light;
   }
 }
-
-
 .text-button[role="tab"] {
+  border-bottom: solid 1px $translucent;
+  border-radius: 0px;
+  color: $gray-color;
+}
+
+.text-button[role="tab"][aria-selected = 'true'] {
   border-bottom: solid 1px $primary-color;
   border-radius: 0px;
+  color: $primary-color;
 }
+
 
 

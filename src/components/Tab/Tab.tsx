@@ -1,56 +1,40 @@
-import React from 'react';
-import { BaseButton, ButtonTypes, ButtonDesignTag } from '../Buttons';
+import React, { useState } from 'react';
+import { Tablist, TabListTabInfo } from './index';
+export interface TabInfo {
+  tabIndex: number;
+  text: string;
+}
+interface TabProps {
+  defaultTab: number;
+  tabs: TabInfo[];
+}
 
-// getTabList(){
+function getTabInfo (props: TabProps, tabsIndex: number):TabListTabInfo[] {
+  const output:TabListTabInfo[] = [];
 
+  for(let i=0; i<props.tabs.length; i++) {
+    const tab = props.tabs[i];
+    const newTab:TabListTabInfo = {} as TabListTabInfo;
+    newTab.tabIndex = tab.tabIndex;
+    newTab.ARIASelected = tabsIndex === tab.tabIndex ? true : false;
+    newTab.text = tab.text;
+    output.push(newTab)
+  }
+  return output;
 
-//   <BaseButton
-//     text="click here"
-//     type={ButtonTypes.button}
-//     buttonDesignTag={ButtonDesignTag.tabButton}
-//     disabled={false}
-//     visibile={true}
-//   />
+}
 
-// }
-// getTabPanel(){
-
-// }
-
-/// need mechanics to change diabled
-
-interface TabProps { }
 export function Tab(props: TabProps) {
-
-
+  const [tabsIndex, setTabIndex] = useState(0);
+  const tabs = getTabInfo(props, tabsIndex);
   return (
     <>
-      <div role="tablist">
-        <BaseButton
-          text="click here"
-          type={ButtonTypes.button}
-          buttonDesignTag={ButtonDesignTag.textButton}
-          disabled={false}
-          visibile={true}
-          role={'tab'}
-        />
-        <BaseButton
-          text="click here"
-          type={ButtonTypes.button}
-          buttonDesignTag={ButtonDesignTag.textButton}
-          disabled={false}
-          visibile={true}
-          role={'tab'}
-        />
-        <BaseButton
-          text="click here"
-          type={ButtonTypes.button}
-          buttonDesignTag={ButtonDesignTag.textButton}
-          disabled={false}
-          visibile={true}
-          role={'tab'}
-        />
-      </div>
+      <Tablist
+        defaultTab={0}
+        activeTab={tabsIndex}
+        tabs={tabs}
+        onClick={(tabIndex:number)=>setTabIndex(tabIndex)}
+      />
       <div role="tabpanel">
 
       </div>
