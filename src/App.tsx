@@ -15,6 +15,7 @@ import { NavDrawer } from './components/NavDrawer';
 import Stopwatch from './components/Stopwatch/Stopwatch';
 import { AppHeader } from './components/AppHeader';
 import { Tab } from './components/Tab';
+import AppPage from './components/Page/AppPage';
 
 
 interface Props { }
@@ -69,10 +70,10 @@ class App extends Component<Props, State>{
               <Route path="/SampleTabPage">
                 <SampleTabPage />
               </Route>
-              {/* <Route path="/users">
-                  <Users />
+              <Route path="/AppPage">
+                  <AppPage />
                 </Route>
-                <Route path="/">
+              {/* <Route path="/">
                   <Home />
                 </Route> */}
             </Switch>

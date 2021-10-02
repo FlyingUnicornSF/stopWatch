@@ -25,8 +25,8 @@ function getTabs(props: TablistProps){
         visibile={true}
         role={'tab'}
         ARIASelected={tab.ARIASelected}
-        // onClick={(tab.tabIndex) => {props.tabIndex}}
-        // tabIndex={tab.tabIndex}
+        onClick={() => {tab.tabIndex}}
+        tabIndex={tab.tabIndex}
       />
     )
   })
