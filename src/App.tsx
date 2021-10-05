@@ -9,14 +9,13 @@ import {
 import "./App.css";
 
 import { SampleButtonPage } from './components/Buttons/SampleButtonPage';
-import {SampleTabPage} from './components/Tab/SampleTabPage';
+import { SampleTabPage } from './components/Tabs/SampleTabPage';
 
 import { NavDrawer } from './components/NavDrawer';
-import Stopwatch from './components/Stopwatch/Stopwatch';
 import { AppHeader } from './components/AppHeader';
-import { Tab } from './components/Tab';
-import AppPage from './components/Page/AppPage';
 
+import Stopwatch from './components/Stopwatch/Stopwatch';
+import AppPage from './components/Page/AppPage';
 
 interface Props { }
 interface State {
@@ -50,7 +49,7 @@ class App extends Component<Props, State>{
           openSideNav={() => this.openSideNav(true)}
         />
         <Router>
-          <main style={{padding: '1rem'}}>
+          <main style={{ padding: '1rem' }}>
             {/* <Stopwatch /> */}
 
             <p> Hello, World! </p>
@@ -70,9 +69,9 @@ class App extends Component<Props, State>{
               <Route path="/SampleTabPage">
                 <SampleTabPage />
               </Route>
-              <Route path="/AppPage">
+              {/* <Route path="/AppPage">
                   <AppPage />
-                </Route>
+                </Route> */}
               {/* <Route path="/">
                   <Home />
                 </Route> */}

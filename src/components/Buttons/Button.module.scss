@@ -5,7 +5,7 @@
   font-size: 0.875rem;
   font-weight: 500;
   letter-spacing: 0.0892857143em;
-  max-width: fit-content;
+  max-width: initial;
   height: 1.875rem;
   text-decoration: none;
   text-transform: uppercase;
@@ -109,10 +109,13 @@
     background-color: $primary-color-light;
   }
 }
+// Tabs
 .text-button[role="tab"] {
   border-bottom: solid 1px $translucent;
   border-radius: 0px;
   color: $gray-color;
+  flex-grow: 1;
+  transition: 0.4s ease-in-out;
 }
 
 .text-button[role="tab"][aria-selected = 'true'] {

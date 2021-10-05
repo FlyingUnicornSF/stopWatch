@@ -30,9 +30,9 @@ function getContents() {
 
         <Link to="/SampleTabPage">SampleTabPage</Link>
       </div>
-      <div className={styles['nav-drawer-items']}>
+      {/* <div className={styles['nav-drawer-items']}>
         <Link to="/AppPage">AppPage</Link>
-      </div>
+      </div> */}
       <div className={styles['nav-drawer-items']}>
         <Link to="/users">Users</Link>
       </div>

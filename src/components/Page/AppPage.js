@@ -1,11 +1,13 @@
 import React from "react";
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 
 class AppPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       tableData: [],
-      searchInput: '',
+      searchInput: "",
     };
     this.fetchData = this.fetchData.bind(this);
     this.inputOnChange = this.inputOnChange.bind(this);
@@ -24,14 +26,22 @@ class AppPage extends React.Component {
     this.fetchData();
   }
 
-  fetchData() {
-    fetch(
+  // fetchData() {
+  //   fetch(
+  //     `https://gist.githubusercontent.com/afiedler/3f388de6159f84bbe330e1a8289006a6/raw/59a2f67bbe0e4891bba22241406d7bd93bd8fb6b/parks.json`
+  //   )
+  //     .then((response) => response.json())
+  //     .then((value) => {
+  //       this.setState({ tableData: value });
+  //     });
+  // }
+
+  async fetchData() {
+    const fetchResponse = await fetch(
       `https://gist.githubusercontent.com/afiedler/3f388de6159f84bbe330e1a8289006a6/raw/59a2f67bbe0e4891bba22241406d7bd93bd8fb6b/parks.json`
-    )
-      .then((response) => response.json())
-      .then((value) => {
-        this.setState({ tableData: value });
-      });
+    );
+    const response = await fetchResponse.json();
+    this.setState({tableData: response});
   }
 
   buildTable(tableData) {
@@ -53,28 +63,28 @@ class AppPage extends React.Component {
     return output;
   }
 
-  inputOnChange(event){
-    const value = event.target.value
+  inputOnChange(event) {
+    const value = event.target.value;
     this.setState({
-      searchInput: value.toLowerCase()
-    })
+      searchInput: value.toLowerCase(),
+    });
   }
 
-  filterTableData(tableData, input){
-    if(tableData === null) return;
-        // name or location
+  filterTableData(tableData, input) {
+    if (tableData === null) return;
+    // name or location
     let output = [];
-    for(let i=0; i<tableData.length; i++) {
+    for (let i = 0; i < tableData.length; i++) {
       const row = tableData[i];
       const name = row.name.toLowerCase();
       const location = row.location.toLowerCase();
-      if(name.includes(input) || location.includes(input)){
+      if (name.includes(input) || location.includes(input)) {
         output.push(row);
       }
     }
     return output;
   }
-/**
+  /**
  * I will use this code  from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
  * // sort by name
 items.sort(function(a, b) {
@@ -108,7 +118,9 @@ items.sort(function(a, b) {
           minlength="4"
           maxlength="8"
           size="10"
-          onChange={(event)=>{this.inputOnChange(event)}}
+          onChange={(event) => {
+            this.inputOnChange(event);
+          }}
         ></input>
         <table>
           <thead>

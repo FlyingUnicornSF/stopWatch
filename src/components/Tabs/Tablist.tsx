@@ -3,7 +3,6 @@ import { BaseButton, ButtonTypes, ButtonDesignTag } from '../Buttons';
 import {TabInfo} from './index';
 
 interface TablistProps {
-  defaultTab: string | number;
   activeTab: string | number;
   tabs: TabListTabInfo[];
   onClick: (tabIndex:number)=>void;
@@ -25,7 +24,7 @@ function getTabs(props: TablistProps){
         visibile={true}
         role={'tab'}
         ARIASelected={tab.ARIASelected}
-        onClick={() => {tab.tabIndex}}
+        onClick={() => {props.onClick(tab.tabIndex)}}
         tabIndex={tab.tabIndex}
       />
     )
@@ -35,33 +34,8 @@ function getTabs(props: TablistProps){
 export function Tablist(props: TablistProps) {
 
   return (
-    <div role="tablist">
-      <BaseButton
-        text="click here"
-        type={ButtonTypes.button}
-        buttonDesignTag={ButtonDesignTag.textButton}
-        disabled={false}
-        visibile={true}
-        role={'tab'}
-        ARIASelected={true}
-        onClick={() => { }}
-      />
-      <BaseButton
-        text="click here"
-        type={ButtonTypes.button}
-        buttonDesignTag={ButtonDesignTag.textButton}
-        disabled={false}
-        visibile={true}
-        role={'tab'}
-      />
-      <BaseButton
-        text="click here"
-        type={ButtonTypes.button}
-        buttonDesignTag={ButtonDesignTag.textButton}
-        disabled={false}
-        visibile={true}
-        role={'tab'}
-      />
+    <div style={{display: 'flex'}} role="tablist">
+      {getTabs(props)}
     </div>
   )
 }
