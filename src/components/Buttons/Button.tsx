@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Button.module.scss'
+import styles from './Button.module.scss';
 
 interface BaseButtonProps {
   text: string;
@@ -15,12 +15,13 @@ interface BaseButtonProps {
   styleOverRide?: React.CSSProperties;
   role?: string;
   tabIndex?: number;
+  key?: number;
 }
 
 export enum ButtonTypes {
   submit = 'submit',
   reset = 'reset',
-  button = 'button'
+  button = 'button',
 }
 
 export enum ButtonDesignTag {
@@ -32,7 +33,7 @@ export enum ButtonDesignTag {
   iconButton = 'iconButton',
 }
 
-function getClassName(designTag: ButtonDesignTag){
+function getClassName(designTag: ButtonDesignTag) {
   switch (designTag) {
     case ButtonDesignTag.basicButton:
       return styles.button;
@@ -51,23 +52,19 @@ function getClassName(designTag: ButtonDesignTag){
   }
 }
 
-function getLeadingIcon(iconName: string | undefined){
-  if(typeof iconName === 'string') {
-    return (
-      <span className="material-icons-outlined">
-          {iconName}
-      </span>
-    )
+function getLeadingIcon(iconName: string | undefined) {
+  if (typeof iconName === 'string') {
+    return <span className="material-icons-outlined">{iconName}</span>;
   }
 }
 
-function getAreaSelected (areaSelected: boolean | undefined) {
-  if(areaSelected === true) {
+function getAreaSelected(areaSelected: boolean | undefined) {
+  if (areaSelected === true) {
     return true;
   } else if (areaSelected === false) {
     return false;
   } else {
-    return undefined
+    return undefined;
   }
 }
 /**
@@ -92,7 +89,7 @@ export function BaseButton(props: BaseButtonProps) {
   const buttonClassName = getClassName(designTag);
   const leadingIcon = getLeadingIcon(props.leadingIcon);
   const role = props.role ?? undefined;
-  const selected = getAreaSelected(props.ARIASelected)
+  const selected = getAreaSelected(props.ARIASelected);
   return (
     <button
       className={buttonClassName}
@@ -101,8 +98,7 @@ export function BaseButton(props: BaseButtonProps) {
       type={props.type}
       value={props.value}
       onClick={() => {
-        props.onClick ?
-          props.onClick() : null
+        props.onClick ? props.onClick() : null;
       }}
       style={props.styleOverRide}
       aria-selected={selected}
@@ -112,6 +108,5 @@ export function BaseButton(props: BaseButtonProps) {
       {leadingIcon}
       {props.text}
     </button>
-  )
+  );
 }
-

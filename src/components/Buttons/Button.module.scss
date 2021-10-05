@@ -80,7 +80,7 @@
 
 .button :disabled,
 .button[disabled] {
-  background-color: $gray-color;
+  background-color: $gray-color-dark;
   cursor: not-allowed;
 }
 
@@ -93,10 +93,13 @@
 .text-button[disabled],
 .text-button-light :disabled,
 .text-button-light[disabled] {
-  color: $gray-color;
+  color: $gray-color-dark;
   cursor: not-allowed;
+  &:hover {
+    background-color: initial;
+  }
   span {
-    color: $gray-color;
+    color: $gray-color-dark;
   }
 }
 
@@ -113,7 +116,7 @@
 .text-button[role="tab"] {
   border-bottom: solid 1px $translucent;
   border-radius: 0px;
-  color: $gray-color;
+  color: $gray-color-dark;
   flex-grow: 1;
   transition: 0.4s ease-in-out;
 }

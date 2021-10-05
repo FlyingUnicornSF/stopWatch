@@ -1,15 +1,20 @@
 import React from 'react';
-import { BaseButton, ButtonTypes, ButtonDesignTag } from '../Buttons';
+import {BaseButton, ButtonTypes, ButtonDesignTag} from '../Buttons';
 import styles from './AppHeader.module.scss';
 
 interface AppHeaderProps {
-  openSideNav: ()=>void
+  openSideNav: () => void;
 }
 
 export function AppHeader(props: AppHeaderProps) {
   return (
     <header
-      style={{display: 'flex', flexDirection: 'row', alignItems: 'center', minHeight: '3rem'}}
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        minHeight: '3rem',
+      }}
       className={styles['app-header']}
     >
       <BaseButton
@@ -24,7 +29,7 @@ export function AppHeader(props: AppHeaderProps) {
       />
       <h3>I'm the app header!!!</h3>
     </header>
-  )
+  );
 }
 /**
  *

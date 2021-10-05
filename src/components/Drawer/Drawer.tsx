@@ -4,7 +4,7 @@ import {BaseButton, ButtonDesignTag, ButtonTypes} from '../Buttons';
 import styles from './Drawer.module.scss';
 
 export interface DrawerProps {
-  closeDrawer:()=>void;
+  closeDrawer: () => void;
   open: boolean;
   title: string;
   position: string;
@@ -15,12 +15,12 @@ export interface DrawerProps {
 }
 
 export enum DrawerPosition {
-  left='left',
-  right='right'
+  left = 'left',
+  right = 'right',
 }
 
-function getClassName(open: boolean): string{
-  if(open === true) {
+function getClassName(open: boolean): string {
+  if (open === true) {
     return styles.drawer;
   } else {
     return styles['drawer-closed'];
@@ -28,8 +28,8 @@ function getClassName(open: boolean): string{
 }
 
 function getWidth(open: boolean, width: string | undefined) {
-  if(typeof width !== 'string') return;
-  if(open === true) {
+  if (typeof width !== 'string') return;
+  if (open === true) {
     return width;
   } else {
     return '0px';
@@ -65,13 +65,13 @@ export function Drawer(props: DrawerProps): JSX.Element {
       id={props.id}
       className={className}
       style={{width: width}}
-      onMouseLeave={()=>props.closeDrawer()}
+      onMouseLeave={() => props.closeDrawer()}
     >
       <header>
         <BaseButton
           text={''}
           type={ButtonTypes.button}
-          onClick={()=>props.closeDrawer()}
+          onClick={() => props.closeDrawer()}
           disabled={false}
           visibile={true}
           buttonDesignTag={ButtonDesignTag.iconButtonLight}
@@ -79,12 +79,8 @@ export function Drawer(props: DrawerProps): JSX.Element {
         />
         <h2>{props.title}</h2>
       </header>
-      <main>
-        {props.contents}
-      </main>
-      <footer>
-        {props.footer}
-      </footer>
+      <main>{props.contents}</main>
+      <footer>{props.footer}</footer>
     </div>
-  )
+  );
 }

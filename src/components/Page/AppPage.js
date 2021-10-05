@@ -1,13 +1,13 @@
-import React from "react";
-import "core-js/stable";
-import "regenerator-runtime/runtime";
+import React from 'react';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 
 class AppPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       tableData: [],
-      searchInput: "",
+      searchInput: '',
     };
     this.fetchData = this.fetchData.bind(this);
     this.inputOnChange = this.inputOnChange.bind(this);

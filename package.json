@@ -7,7 +7,8 @@
     "serve": "webpack serve",
     "watch": "webpack --watch",
     "test": "jest",
-    "build": "webpack"
+    "build": "webpack",
+    "fix": "prettier --write \"src/**/*.{ts,tsx,js,jsx}\""
   },
   "author": "Akiyo Marukawa",
   "license": "ISC",
@@ -27,6 +28,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.2.4",
     "material-icons": "^1.4.1",
+    "prettier": "^2.4.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-router-dom": "^5.3.0",
@@ -48,5 +50,13 @@
     "testMatch": [
       "**/?(*.)+(spec|test).[jt]s?(x)"
     ]
+  },
+  "prettier": {
+    "printWidth": 80,
+    "tabWidth": 2,
+    "semi": true,
+    "bracketSpacing": false,
+    "jsxSingleQuote": false,
+    "singleQuote": true
   }
 }

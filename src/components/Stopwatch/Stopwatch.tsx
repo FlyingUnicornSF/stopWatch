@@ -1,10 +1,10 @@
 import React from 'react';
-import { BaseButton, ButtonTypes, ButtonDesignTag } from '../Buttons';
+import {BaseButton, ButtonTypes, ButtonDesignTag} from '../Buttons';
 
-interface StopwatchProps { }
+interface StopwatchProps {}
 interface StopwatchStates {
-  paused: boolean,
-  seconds: number,
+  paused: boolean;
+  seconds: number;
 }
 
 class Stopwatch extends React.Component<StopwatchProps, StopwatchStates> {
@@ -13,7 +13,7 @@ class Stopwatch extends React.Component<StopwatchProps, StopwatchStates> {
     this.state = {
       paused: false,
       seconds: 0,
-    }
+    };
     this.startTimer = this.startTimer.bind(this);
     this.setTimeState = this.setTimeState.bind(this);
     this.stopTimer = this.stopTimer.bind(this);
@@ -53,8 +53,8 @@ class Stopwatch extends React.Component<StopwatchProps, StopwatchStates> {
     if (!paused) {
       let seconds = this.state.seconds;
       this.setState({
-        seconds: seconds + 1
-      })
+        seconds: seconds + 1,
+      });
     }
   }
 
@@ -64,57 +64,57 @@ class Stopwatch extends React.Component<StopwatchProps, StopwatchStates> {
       // release our intervalID from the variable
       this.INDERVAL_ID = null;
       this.setState({
-        seconds: 0
-      })
+        seconds: 0,
+      });
     }
   }
 
-  pauseTimer(paused:boolean, seconds:number) {
+  pauseTimer(paused: boolean, seconds: number) {
     if (!paused && seconds !== 0) {
-      this.setState({ paused: true })
+      this.setState({paused: true});
     } else {
-      this.setState({ paused: false })
+      this.setState({paused: false});
     }
   }
 
-  getStyleStartButton(seconds: number):React.CSSProperties {
-    if(seconds !== 0) {
-      return { backgroundColor: 'gray', color: 'black'}
+  getStyleStartButton(seconds: number): React.CSSProperties {
+    if (seconds !== 0) {
+      return {backgroundColor: 'gray', color: 'black'};
     } else {
-      return { backgroundColor: 'blue', color: 'white'}
+      return {backgroundColor: 'blue', color: 'white'};
     }
   }
 
-  getStylePauseButton(seconds: number):React.CSSProperties {
-    if(seconds === 0) {
-      return { backgroundColor: 'gray', color: 'black'}
+  getStylePauseButton(seconds: number): React.CSSProperties {
+    if (seconds === 0) {
+      return {backgroundColor: 'gray', color: 'black'};
     } else {
-      return { backgroundColor: 'blue', color: 'white'}
+      return {backgroundColor: 'blue', color: 'white'};
     }
   }
 
-  getStylePauseText(paused:boolean):string {
-    if(paused === true) {
-      return 'resume'
+  getStylePauseText(paused: boolean): string {
+    if (paused === true) {
+      return 'resume';
     } else {
-      return 'pause'
+      return 'pause';
     }
   }
 
-  getStyleStopButton(seconds: number):React.CSSProperties {
-    if(seconds === 0) {
-      return { backgroundColor: 'gray', color: 'black'}
+  getStyleStopButton(seconds: number): React.CSSProperties {
+    if (seconds === 0) {
+      return {backgroundColor: 'gray', color: 'black'};
     } else {
-      return { backgroundColor: 'blue', color: 'white'}
+      return {backgroundColor: 'blue', color: 'white'};
     }
   }
 
-  getHourMinSec(seconds: number):{hours: number, min: number, sec: number}{
+  getHourMinSec(seconds: number): {hours: number; min: number; sec: number} {
     const hours = Math.floor(seconds / (60 * 60));
     const remainderSeconds = seconds % (60 * 60);
     const min = Math.floor(remainderSeconds / 60);
     const sec = remainderSeconds % 60;
-    return {hours, min, sec}
+    return {hours, min, sec};
   }
 
   render() {
@@ -159,8 +159,7 @@ class Stopwatch extends React.Component<StopwatchProps, StopwatchStates> {
         <p>{`${getHrMinSec.min} Min`}</p>
         <p>{`${getHrMinSec.sec} Sec`}</p>
       </div>
-
-    )
+    );
   }
 }
 

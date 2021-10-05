@@ -1,14 +1,14 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Link
-} from "react-router-dom";
+import {BrowserRouter as Router, Link} from 'react-router-dom';
 
-import { Drawer } from '../Drawer';
-import { BaseButton, ButtonTypes, ButtonDesignTag } from '../../components/Buttons';
+import {Drawer} from '../Drawer';
+import {
+  BaseButton,
+  ButtonTypes,
+  ButtonDesignTag,
+} from '../../components/Buttons';
 
 import styles from './NavDrawer.module.scss';
-
 
 interface NavDrawerProps {
   closeNavDrawer: () => void;
@@ -17,9 +17,7 @@ interface NavDrawerProps {
 
 function getContents() {
   return (
-
     <nav>
-
       <div className={styles['nav-drawer-items']}>
         <Link to="/">Home</Link>
       </div>
@@ -27,7 +25,6 @@ function getContents() {
         <Link to="/SampleButtonPage">SampleButtonPage</Link>
       </div>
       <div className={styles['nav-drawer-items']}>
-
         <Link to="/SampleTabPage">SampleTabPage</Link>
       </div>
       {/* <div className={styles['nav-drawer-items']}>
@@ -37,8 +34,7 @@ function getContents() {
         <Link to="/users">Users</Link>
       </div>
     </nav>
-
-  )
+  );
 }
 
 function getFooter() {
@@ -50,7 +46,7 @@ function getFooter() {
       visibile={true}
       buttonDesignTag={ButtonDesignTag.textButtonLight}
     />
-  )
+  );
 }
 /**
  *
@@ -68,5 +64,5 @@ export function NavDrawer(props: NavDrawerProps): JSX.Element {
       contents={getContents()}
       footer={getFooter()}
     />
-  )
+  );
 }

@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
-import { BaseButton, ButtonTypes, ButtonDesignTag } from '../Buttons';
+import React, {useState} from 'react';
+import {BaseButton, ButtonTypes, ButtonDesignTag} from '../Buttons';
 import {TabInfo} from './index';
 
 interface TablistProps {
   activeTab: string | number;
   tabs: TabListTabInfo[];
-  onClick: (tabIndex:number)=>void;
+  onClick: (tabIndex: number) => void;
 }
 
-export interface TabListTabInfo  extends TabInfo{
+export interface TabListTabInfo extends TabInfo {
   ARIASelected: boolean;
 }
 
-function getTabs(props: TablistProps){
+function getTabs(props: TablistProps) {
   const tabs = props.tabs;
-  return tabs.map((tab: TabListTabInfo)=>{
+  return tabs.map((tab: TabListTabInfo) => {
     return (
       <BaseButton
         text={tab.text}
@@ -24,18 +24,20 @@ function getTabs(props: TablistProps){
         visibile={true}
         role={'tab'}
         ARIASelected={tab.ARIASelected}
-        onClick={() => {props.onClick(tab.tabIndex)}}
+        onClick={() => {
+          props.onClick(tab.tabIndex);
+        }}
         tabIndex={tab.tabIndex}
+        key={tab.tabIndex}
       />
-    )
-  })
+    );
+  });
 }
 
 export function Tablist(props: TablistProps) {
-
   return (
     <div style={{display: 'flex'}} role="tablist">
       {getTabs(props)}
     </div>
-  )
+  );
 }

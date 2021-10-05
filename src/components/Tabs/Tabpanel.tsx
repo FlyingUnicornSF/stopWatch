@@ -6,7 +6,7 @@ interface TabpanelProps {
   tabContents: Map<number, TabInfo>;
 }
 
-function getTabContent(props: TabpanelProps){
+function getTabContent(props: TabpanelProps) {
   const tabContents = props.tabContents;
   const activeTab = props.activeTab;
   const content = tabContents.get(activeTab);
@@ -14,10 +14,10 @@ function getTabContent(props: TabpanelProps){
 }
 
 export function Tabpanel(props: TabpanelProps) {
-  const content = getTabContent(props)
+  const content = getTabContent(props);
   return (
     <div style={{display: 'flex'}} role="tabpanel">
       {content}
     </div>
-  )
+  );
 }

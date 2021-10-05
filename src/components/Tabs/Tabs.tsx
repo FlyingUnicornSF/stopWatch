@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { Tablist, TabListTabInfo, Tabpanel } from './index';
+import React, {useState, useEffect} from 'react';
+import {Tablist, TabListTabInfo, Tabpanel} from './index';
 
 export interface TabInfo {
   tabIndex: number;
   text: string;
-  content: JSX.Element
+  content: JSX.Element;
 }
 
 interface TabProps {
@@ -16,9 +16,8 @@ function makeContentsMap(tabs: TabInfo[]) {
   let output = new Map();
   for (let i = 0; i < tabs.length; i++) {
     const tab = tabs[i];
-    output.set(tab.tabIndex, tab)
+    output.set(tab.tabIndex, tab);
   }
-  console.log(output)
   return output;
 }
 
@@ -31,16 +30,19 @@ function getTabInfo(props: TabProps, tabsIndex: number): TabListTabInfo[] {
     newTab.tabIndex = tab.tabIndex;
     newTab.ARIASelected = tabsIndex === tab.tabIndex ? true : false;
     newTab.text = tab.text;
-    output.push(newTab)
+    output.push(newTab);
   }
   return output;
-
 }
 
 export function Tabs(props: TabProps) {
   const [tabsIndex, setTabIndex] = useState(props.defaultTab);
   const tabs = getTabInfo(props, tabsIndex);
-  const contentsMap = makeContentsMap(props.tabs)
+  const [contentsMap, setContentsMap] = useState(() => {
+    const initialContentsMap = makeContentsMap(props.tabs);
+    return initialContentsMap;
+  });
+
   return (
     <>
       <Tablist
@@ -48,12 +50,7 @@ export function Tabs(props: TabProps) {
         tabs={tabs}
         onClick={(tabIndex: number) => setTabIndex(tabIndex)}
       />
-      <div role="tabpanel">
-        <Tabpanel
-          activeTab={tabsIndex}
-          tabContents={contentsMap}
-        />
-      </div>
+      <Tabpanel activeTab={tabsIndex} tabContents={contentsMap} />
     </>
-  )
+  );
 }

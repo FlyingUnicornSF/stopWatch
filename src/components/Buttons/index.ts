@@ -1,5 +1,1 @@
-export {
-  BaseButton,
-  ButtonTypes,
-  ButtonDesignTag
-} from './Button';
+export {BaseButton, ButtonTypes, ButtonDesignTag} from './Button';
