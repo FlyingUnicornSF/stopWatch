@@ -43,7 +43,7 @@ class App extends Component<Props, State> {
         <AppHeader openSideNav={() => this.openSideNav(true)} />
         <Router>
           <main style={{padding: '1rem'}}>
-            {/* <Stopwatch /> */}
+            <Stopwatch />
 
             <p> Hello, World! </p>
             {/* <Tab /> */}
@@ -62,9 +62,9 @@ class App extends Component<Props, State> {
               <Route path="/SampleTabPage">
                 <SampleTabPage />
               </Route>
-              {/* <Route path="/AppPage">
+              <Route path="/AppPage">
                   <AppPage />
-                </Route> */}
+                </Route>
               {/* <Route path="/">
                   <Home />
                 </Route> */}

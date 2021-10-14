@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 import {Drawer} from '../Drawer';
 import {
@@ -27,9 +27,9 @@ function getContents() {
       <div className={styles['nav-drawer-items']}>
         <Link to="/SampleTabPage">SampleTabPage</Link>
       </div>
-      {/* <div className={styles['nav-drawer-items']}>
+      <div className={styles['nav-drawer-items']}>
         <Link to="/AppPage">AppPage</Link>
-      </div> */}
+      </div>
       <div className={styles['nav-drawer-items']}>
         <Link to="/users">Users</Link>
       </div>

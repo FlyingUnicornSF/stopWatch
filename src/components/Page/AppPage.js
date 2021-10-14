@@ -114,10 +114,8 @@ items.sort(function(a, b) {
           type="text"
           id="name"
           name="name"
-          required
-          minlength="4"
-          maxlength="8"
-          size="10"
+          // size="10"
+          defaultValue="Search National Parks"
           onChange={(event) => {
             this.inputOnChange(event);
           }}
