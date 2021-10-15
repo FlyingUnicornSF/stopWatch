@@ -5,9 +5,9 @@ interface BaseButtonProps {
   text: string;
   type: ButtonTypes;
   onClick?: () => void;
-  disabled: boolean;
-  visibile: boolean;
-  buttonDesignTag: ButtonDesignTag;
+  disabled?: boolean;
+  visibile?: boolean;
+  buttonDesignTag?: ButtonDesignTag;
   ARIASelected?: boolean;
   formId?: string;
   value?: string | number;
@@ -74,8 +74,8 @@ function getAreaSelected(areaSelected: boolean | undefined) {
   text: string;
   type: ButtonTypes;
   onClick?: ()=>void;
-  disabled: boolean;
-  visibile: boolean;
+  disabled?: boolean;
+  visibile?: boolean;
   buttonDesignTag: ButtonDesignTag;
   formId?: string;
   value?: string | number;
@@ -85,11 +85,14 @@ function getAreaSelected(areaSelected: boolean | undefined) {
  * @returns JSX.Element button tag
  */
 export function BaseButton(props: BaseButtonProps) {
-  const designTag = props.buttonDesignTag;
+  const designTag = props.buttonDesignTag ?? ButtonDesignTag.basicButton;
   const buttonClassName = getClassName(designTag);
   const leadingIcon = getLeadingIcon(props.leadingIcon);
   const role = props.role ?? undefined;
   const selected = getAreaSelected(props.ARIASelected);
+  const visiblity = {"visiblity": props.visibile ? "visible" : "hidden"};
+  const styleOverRide = props.styleOverRide;
+  const style =  Object.assign(visiblity, styleOverRide);
   return (
     <button
       className={buttonClassName}
@@ -100,9 +103,9 @@ export function BaseButton(props: BaseButtonProps) {
       onClick={() => {
         props.onClick ? props.onClick() : null;
       }}
-      style={props.styleOverRide}
+      style={style}
       aria-selected={selected}
-      disabled={props.disabled}
+      disabled={props.disabled ?? false}
       tabIndex={props.tabIndex}
     >
       {leadingIcon}

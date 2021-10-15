@@ -1,13 +1,18 @@
 import React from 'react';
 import 'core-js/stable';
-import 'regenerator-runtime/runtime';
+import 'regenerator-runtime/runtime'; // need this for async/await
+
+import {BaseButton} from '../Buttons';
 
 class AppPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       tableData: [],
+      rawTableData: [],
       searchInput: '',
+      sortAssending: true,
+      sortCategory: 'name',
     };
     this.fetchData = this.fetchData.bind(this);
     this.inputOnChange = this.inputOnChange.bind(this);
@@ -41,14 +46,17 @@ class AppPage extends React.Component {
       `https://gist.githubusercontent.com/afiedler/3f388de6159f84bbe330e1a8289006a6/raw/59a2f67bbe0e4891bba22241406d7bd93bd8fb6b/parks.json`
     );
     const response = await fetchResponse.json();
-    this.setState({tableData: response});
+    this.setState({rawTableData: response});
   }
 
-  buildTable(tableData) {
-    if (tableData == null) return;
+  buildTable(rawTableData, searchInput, sortAssending, sortCategory) {
+    // if (rawTableData == null) return;
+    const copyOfRawTableData = [...rawTableData];
+    const filteredTableData = this.filterTableData(copyOfRawTableData, searchInput);
+    const sortedTableData = this.sortTableData(filteredTableData, sortAssending, sortCategory)
     let output = [];
-    for (let i = 0; i < tableData.length; i++) {
-      const row = tableData[i];
+    for (let i = 0; i < sortedTableData.length; i++) {
+      const row = sortedTableData[i];
       output.push(
         <tr>
           <td>{row.name}</td>
@@ -62,7 +70,7 @@ class AppPage extends React.Component {
     }
     return output;
   }
-
+  // TODO: debounce // but i wouldn't use setTimeout()
   inputOnChange(event) {
     const value = event.target.value;
     this.setState({
@@ -84,37 +92,62 @@ class AppPage extends React.Component {
     }
     return output;
   }
-  /**
- * I will use this code  from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
- * // sort by name
-items.sort(function(a, b) {
-  var nameA = a.name.toUpperCase(); // ignore upper and lowercase
-  var nameB = b.name.toUpperCase(); // ignore upper and lowercase
-  if (nameA < nameB) {
-    return -1;
-  }
-  if (nameA > nameB) {
-    return 1;
+
+  sortTableData(tableData, sortedAssending , category) {
+    let copyOfTableData = [...tableData];
+    if(sortedAssending === true) {
+      copyOfTableData.sort(function(a, b) {
+        var nameA = a[category].toUpperCase(); // ignore upper and lowercase
+        var nameB = b[category].toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        return 0;
+      })
+    } else {
+      copyOfTableData.sort(function(a, b) {
+        var nameA = a[category].toUpperCase(); // ignore upper and lowercase
+        var nameB = b[category].toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return 1;
+        }
+        if (nameA > nameB) {
+          return -1;
+        }
+        return 0;
+      })
+    }
+    return copyOfTableData;
   }
 
-  // names must be equal
-  return 0;
-});
- */
+  toggleSort(sortCategory){
+    let sortAssending = this.state.sortAssending;
+    if(sortAssending === true) {
+      sortAssending = false;
+    } else {
+      sortAssending = true;
+    }
+    this.setState({
+      sortAssending,
+      sortCategory
+    })
+  }
+
   render() {
-    const tableData = this.state.tableData;
-    const input = this.state.searchInput;
-    // const sortD =
-    const filteredTableData = this.filterTableData(tableData, input);
-    // const sortedTableData = this.sortTableData(filteredTableData, direc);
-    // filter tableDat function
+    const rawTableData = this.state.rawTableData;
+    const searchInput = this.state.searchInput;
+    const sortAssending = this.state.sortAssending;
+    const sortCategory = this.state.sortCategory;
+
     return (
       <>
         <input
           type="text"
           id="name"
           name="name"
-          // size="10"
           defaultValue="Search National Parks"
           onChange={(event) => {
             this.inputOnChange(event);
@@ -123,11 +156,31 @@ items.sort(function(a, b) {
         <table>
           <thead>
             <tr>
-              <th colSpan={2}>Sort by name</th>
-              <th colSpan={2}>Sort by location</th>
+              <th key="sortByName" colSpan={1}>
+                <BaseButton
+                  text={"Sort by name"}
+                  type={"button"}
+                  onClick={()=>this.toggleSort('name')}
+                  disabled={false}
+                  visibile={true}
+                  leadingIcon={"expand_less"}
+                />
+              </th>
+              <th key="emppty1"></th>
+              <th key="sortByLcation" colSpan={1}>
+                <BaseButton
+                  text={"Sort by name"}
+                  type={"button"}
+                  onClick={()=>this.toggleSort('location')}
+                  disabled={false}
+                  visibile={true}
+                  leadingIcon={"expand_less"}
+                />
+              </th>
+              <th key="emppty2"></th>
             </tr>
           </thead>
-          <tbody>{this.buildTable(filteredTableData)}</tbody>
+          <tbody>{this.buildTable(rawTableData, searchInput, sortAssending, sortCategory)}</tbody>
         </table>
       </>
     );
