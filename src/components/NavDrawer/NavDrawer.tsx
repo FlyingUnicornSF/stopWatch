@@ -28,10 +28,10 @@ function getContents() {
         <Link to="/SampleTabPage">SampleTabPage</Link>
       </div>
       <div className={styles['nav-drawer-items']}>
-        <Link to="/AppPage">AppPage</Link>
+        <Link to="/AppPage">National parks</Link>
       </div>
       <div className={styles['nav-drawer-items']}>
-        <Link to="/users">Users</Link>
+        <Link to="/StopWatch">StopWatch page</Link>
       </div>
     </nav>
   );

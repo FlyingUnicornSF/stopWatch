@@ -9,7 +9,7 @@ import {SampleTabPage} from './components/Tabs/SampleTabPage';
 import {NavDrawer} from './components/NavDrawer';
 import {AppHeader} from './components/AppHeader';
 
-import Stopwatch from './components/Stopwatch/Stopwatch';
+import StopWatchPage from './components/Stopwatch/StopWatchPage';
 import AppPage from './components/Page/AppPage';
 
 interface Props {}
@@ -43,10 +43,8 @@ class App extends Component<Props, State> {
         <AppHeader openSideNav={() => this.openSideNav(true)} />
         <Router>
           <main style={{padding: '1rem'}}>
-            <Stopwatch />
-
             <p> Hello, World! </p>
-            {/* <Tab /> */}
+            <p> use Nav on the left to find pages</p>
 
             <NavDrawer
               open={navDrawerOpen}
@@ -63,8 +61,11 @@ class App extends Component<Props, State> {
                 <SampleTabPage />
               </Route>
               <Route path="/AppPage">
-                  <AppPage />
-                </Route>
+                <AppPage />
+              </Route>
+              <Route path="/StopWatch">
+                <StopWatchPage />
+              </Route>
               {/* <Route path="/">
                   <Home />
                 </Route> */}

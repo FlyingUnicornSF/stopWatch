@@ -17,6 +17,7 @@ class AppPage extends React.Component {
     this.fetchData = this.fetchData.bind(this);
     this.inputOnChange = this.inputOnChange.bind(this);
   }
+
   /**
    * {
     "name": "Acadia",
@@ -52,15 +53,22 @@ class AppPage extends React.Component {
   buildTable(rawTableData, searchInput, sortAssending, sortCategory) {
     // if (rawTableData == null) return;
     const copyOfRawTableData = [...rawTableData];
-    const filteredTableData = this.filterTableData(copyOfRawTableData, searchInput);
-    const sortedTableData = this.sortTableData(filteredTableData, sortAssending, sortCategory)
+    const filteredTableData = this.filterTableData(
+      copyOfRawTableData,
+      searchInput
+    );
+    const sortedTableData = this.sortTableData(
+      filteredTableData,
+      sortAssending,
+      sortCategory
+    );
     let output = [];
     for (let i = 0; i < sortedTableData.length; i++) {
       const row = sortedTableData[i];
       output.push(
         <tr>
           <td>{row.name}</td>
-          <td>{<img src={row.photo} alt="park photo" />}</td>
+          <td>{<img src={row.photo} alt={`${row.name} photo`} />}</td>
           <td>{row.location}</td>
           <td>{row.dateFounded}</td>
           <td>{row.area}</td>
@@ -93,10 +101,10 @@ class AppPage extends React.Component {
     return output;
   }
 
-  sortTableData(tableData, sortedAssending , category) {
+  sortTableData(tableData, sortedAssending, category) {
     let copyOfTableData = [...tableData];
-    if(sortedAssending === true) {
-      copyOfTableData.sort(function(a, b) {
+    if (sortedAssending === true) {
+      copyOfTableData.sort(function (a, b) {
         var nameA = a[category].toUpperCase(); // ignore upper and lowercase
         var nameB = b[category].toUpperCase(); // ignore upper and lowercase
         if (nameA < nameB) {
@@ -106,9 +114,9 @@ class AppPage extends React.Component {
           return 1;
         }
         return 0;
-      })
+      });
     } else {
-      copyOfTableData.sort(function(a, b) {
+      copyOfTableData.sort(function (a, b) {
         var nameA = a[category].toUpperCase(); // ignore upper and lowercase
         var nameB = b[category].toUpperCase(); // ignore upper and lowercase
         if (nameA < nameB) {
@@ -118,38 +126,37 @@ class AppPage extends React.Component {
           return -1;
         }
         return 0;
-      })
+      });
     }
     return copyOfTableData;
   }
 
-  toggleSort(sortCategory){
+  toggleSort(sortCategory) {
     const prevSortCategory = this.state.sortCategory;
     let sortAssending = this.state.sortAssending;
-    if(sortAssending === false || (sortCategory !== prevSortCategory)) {
+    if (sortAssending === false || sortCategory !== prevSortCategory) {
       sortAssending = true;
     } else {
       sortAssending = false;
     }
     this.setState({
       sortAssending,
-      sortCategory
-    })
+      sortCategory,
+    });
   }
 
-
-  getSortByNameLeadingIcon (sortAssending, sortCategory) {
-    if(sortCategory !== 'name') return null;
-    if(sortAssending === true) {
+  getSortByNameLeadingIcon(sortAssending, sortCategory) {
+    if (sortCategory !== 'name') return null;
+    if (sortAssending === true) {
       return 'expand_less';
     } else {
       return 'expand_more';
     }
   }
 
-  getSortByLocationLeadingIcon (sortAssending, sortCategory) {
-    if(sortCategory !== 'location') return null;
-    if(sortAssending === true) {
+  getSortByLocationLeadingIcon(sortAssending, sortCategory) {
+    if (sortCategory !== 'location') return null;
+    if (sortAssending === true) {
       return 'expand_less';
     } else {
       return 'expand_more';
@@ -167,7 +174,7 @@ class AppPage extends React.Component {
           type="text"
           id="name"
           name="name"
-          defaultValue="Search National Parks"
+          placeholder="Search National Parks"
           onChange={(event) => {
             this.inputOnChange(event);
           }}
@@ -177,29 +184,42 @@ class AppPage extends React.Component {
             <tr>
               <th key="sortByName" colSpan={1}>
                 <BaseButton
-                  text={"Sort by name"}
-                  type={"button"}
-                  onClick={()=>this.toggleSort('name')}
+                  text={'Sort by name'}
+                  type={'button'}
+                  onClick={() => this.toggleSort('name')}
                   disabled={false}
                   visibile={true}
-                  leadingIcon={this.getSortByNameLeadingIcon(sortAssending, sortCategory)}
+                  leadingIcon={this.getSortByNameLeadingIcon(
+                    sortAssending,
+                    sortCategory
+                  )}
                 />
               </th>
               <th key="emppty1"></th>
               <th key="sortByLcation" colSpan={1}>
                 <BaseButton
-                  text={"Sort by location"}
-                  type={"button"}
-                  onClick={()=>this.toggleSort('location')}
+                  text={'Sort by location'}
+                  type={'button'}
+                  onClick={() => this.toggleSort('location')}
                   disabled={false}
                   visibile={true}
-                  leadingIcon={this.getSortByLocationLeadingIcon(sortAssending, sortCategory)}
+                  leadingIcon={this.getSortByLocationLeadingIcon(
+                    sortAssending,
+                    sortCategory
+                  )}
                 />
               </th>
               <th key="emppty2"></th>
             </tr>
           </thead>
-          <tbody>{this.buildTable(rawTableData, searchInput, sortAssending, sortCategory)}</tbody>
+          <tbody>
+            {this.buildTable(
+              rawTableData,
+              searchInput,
+              sortAssending,
+              sortCategory
+            )}
+          </tbody>
         </table>
       </>
     );

@@ -1,6 +1,9 @@
 import Stopwatch from './Stopwatch';
 
-const StopwatchComponent = new Stopwatch({});
+const StopwatchComponent = new Stopwatch({
+  name: 'TestStopwatch',
+  delete: () => console.log('delte'),
+});
 
 test('seconds to hour, min conversion', () => {
   const {hours, min, sec} = StopwatchComponent.getHourMinSec(7507);

@@ -3,8 +3,8 @@ import styles from './Button.module.scss';
 
 interface BaseButtonProps {
   text: string;
-  type: ButtonTypes;
-  onClick?: () => void;
+  type?: ButtonTypes;
+  onClick?: (e: any) => void;
   disabled?: boolean;
   visibile?: boolean;
   buttonDesignTag?: ButtonDesignTag;
@@ -72,10 +72,10 @@ function getAreaSelected(areaSelected: boolean | undefined) {
  * @param props
  * ```
   text: string;
-  type: ButtonTypes;
+  type?: ButtonTypes; // default "button"
   onClick?: ()=>void;
-  disabled?: boolean;
-  visibile?: boolean;
+  disabled?: boolean; // default false
+  visibile?: boolean; // default 'visible'
   buttonDesignTag: ButtonDesignTag;
   formId?: string;
   value?: string | number;
@@ -90,9 +90,10 @@ export function BaseButton(props: BaseButtonProps) {
   const leadingIcon = getLeadingIcon(props.leadingIcon);
   const role = props.role ?? undefined;
   const selected = getAreaSelected(props.ARIASelected);
-  const visiblity = {"visiblity": props.visibile ? "visible" : "hidden"};
+  const visiblity = {visiblity: props.visibile ? 'visible' : 'hidden'};
   const styleOverRide = props.styleOverRide;
-  const style =  Object.assign(visiblity, styleOverRide);
+  const style = Object.assign(visiblity, styleOverRide);
+  const type = props.type ?? 'button';
   return (
     <button
       className={buttonClassName}
@@ -100,13 +101,20 @@ export function BaseButton(props: BaseButtonProps) {
       role={role}
       type={props.type}
       value={props.value}
-      onClick={() => {
-        props.onClick ? props.onClick() : null;
+      onClick={(event) => {
+        props.onClick ? props.onClick(event) : null;
       }}
       style={style}
       aria-selected={selected}
       disabled={props.disabled ?? false}
       tabIndex={props.tabIndex}
+      onSubmit={(event) => {
+        if (props.type === 'submit' && props.onClick) {
+          return props.onClick(event);
+        } else {
+          return null;
+        }
+      }}
     >
       {leadingIcon}
       {props.text}

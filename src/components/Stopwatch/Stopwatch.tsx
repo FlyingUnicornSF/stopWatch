@@ -1,7 +1,10 @@
 import React from 'react';
 import {BaseButton, ButtonTypes, ButtonDesignTag} from '../Buttons';
 
-interface StopwatchProps {}
+interface StopwatchProps {
+  name: string;
+  delete: () => void;
+}
 interface StopwatchStates {
   paused: boolean;
   seconds: number;
@@ -20,7 +23,10 @@ class Stopwatch extends React.Component<StopwatchProps, StopwatchStates> {
   }
 
   INDERVAL_ID: number | null = null;
-
+  componentWillUnmount() {
+    this.stopTimer();
+    this.setState({seconds: 0});
+  }
   startTimer() {
     // check if already an interval has been set up
     if (!this.INDERVAL_ID) {
@@ -35,6 +41,7 @@ class Stopwatch extends React.Component<StopwatchProps, StopwatchStates> {
       //     })
       //   }
       // }, 1000);
+
       //// this one doesn't work in Typescript
       // this.INDERVAL_ID = window.setInterval(function() {
       //   const paused = this.state.paused;
@@ -79,17 +86,17 @@ class Stopwatch extends React.Component<StopwatchProps, StopwatchStates> {
 
   getStyleStartButton(seconds: number): React.CSSProperties {
     if (seconds !== 0) {
-      return {backgroundColor: 'gray', color: 'black'};
+      return {backgroundColor: 'gray', color: 'black', marginLeft: '0.5rem'};
     } else {
-      return {backgroundColor: 'blue', color: 'white'};
+      return {backgroundColor: 'blue', color: 'white', marginLeft: '0.5rem'};
     }
   }
 
   getStylePauseButton(seconds: number): React.CSSProperties {
     if (seconds === 0) {
-      return {backgroundColor: 'gray', color: 'black'};
+      return {backgroundColor: 'gray', color: 'black', marginLeft: '0.5rem'};
     } else {
-      return {backgroundColor: 'blue', color: 'white'};
+      return {backgroundColor: 'blue', color: 'white', marginLeft: '0.5rem'};
     }
   }
 
@@ -103,9 +110,9 @@ class Stopwatch extends React.Component<StopwatchProps, StopwatchStates> {
 
   getStyleStopButton(seconds: number): React.CSSProperties {
     if (seconds === 0) {
-      return {backgroundColor: 'gray', color: 'black'};
+      return {backgroundColor: 'gray', color: 'black', marginLeft: '0.5rem'};
     } else {
-      return {backgroundColor: 'blue', color: 'white'};
+      return {backgroundColor: 'blue', color: 'white', marginLeft: '0.5rem'};
     }
   }
 
@@ -127,37 +134,60 @@ class Stopwatch extends React.Component<StopwatchProps, StopwatchStates> {
     const stopButtonStyle = this.getStyleStopButton(seconds);
 
     return (
-      <div>
-        <BaseButton
-          text={'start'}
-          type={ButtonTypes.button}
-          onClick={() => this.startTimer()}
-          disabled={false}
-          visibile={true}
-          buttonDesignTag={ButtonDesignTag.basicButton}
-          styleOverRide={startButtonStyle}
-        />
-        <BaseButton
-          text={pauseButtonText}
-          type={ButtonTypes.button}
-          onClick={() => this.pauseTimer(paused, seconds)}
-          disabled={false}
-          visibile={true}
-          buttonDesignTag={ButtonDesignTag.basicButton}
-          styleOverRide={pauseButtonStyle}
-        />
-        <BaseButton
-          text={'stop'}
-          type={ButtonTypes.button}
-          onClick={() => this.stopTimer()}
-          disabled={false}
-          visibile={true}
-          buttonDesignTag={ButtonDesignTag.basicButton}
-          styleOverRide={stopButtonStyle}
-        />
-        <p>{`${getHrMinSec.hours} Hrs`}</p>
-        <p>{`${getHrMinSec.min} Min`}</p>
-        <p>{`${getHrMinSec.sec} Sec`}</p>
+      <div
+        style={{
+          border: 'solid gray 1px',
+          maxWidth: 'fit-content',
+          margin: '0.5rem',
+        }}
+      >
+        <h3>{this.props.name}</h3>
+        <div style={{display: 'flex'}}>
+          <p style={{marginLeft: '0.5rem'}}>{`${getHrMinSec.hours} Hrs`}</p>
+          <p style={{marginLeft: '0.5rem'}}>{`${getHrMinSec.min} Min`}</p>
+          <p style={{marginLeft: '0.5rem'}}>{`${getHrMinSec.sec} Sec`}</p>
+
+          <BaseButton
+            text={'Delete'}
+            type={ButtonTypes.button}
+            onClick={() => this.props.delete()}
+            buttonDesignTag={ButtonDesignTag.basicButton}
+            styleOverRide={{
+              backgroundColor: 'blue',
+              marginLeft: '0.5rem',
+              padding: '0.5rem',
+            }}
+          />
+        </div>
+        <div style={{display: 'flex'}}>
+          <BaseButton
+            text={'start'}
+            type={ButtonTypes.button}
+            onClick={() => this.startTimer()}
+            disabled={false}
+            visibile={true}
+            buttonDesignTag={ButtonDesignTag.basicButton}
+            styleOverRide={startButtonStyle}
+          />
+          <BaseButton
+            text={pauseButtonText}
+            type={ButtonTypes.button}
+            onClick={() => this.pauseTimer(paused, seconds)}
+            disabled={false}
+            visibile={true}
+            buttonDesignTag={ButtonDesignTag.basicButton}
+            styleOverRide={pauseButtonStyle}
+          />
+          <BaseButton
+            text={'stop'}
+            type={ButtonTypes.button}
+            onClick={() => this.stopTimer()}
+            disabled={false}
+            visibile={true}
+            buttonDesignTag={ButtonDesignTag.basicButton}
+            styleOverRide={stopButtonStyle}
+          />
+        </div>
       </div>
     );
   }
