@@ -124,11 +124,12 @@ class AppPage extends React.Component {
   }
 
   toggleSort(sortCategory){
+    const prevSortCategory = this.state.sortCategory;
     let sortAssending = this.state.sortAssending;
-    if(sortAssending === true) {
-      sortAssending = false;
-    } else {
+    if(sortAssending === false || (sortCategory !== prevSortCategory)) {
       sortAssending = true;
+    } else {
+      sortAssending = false;
     }
     this.setState({
       sortAssending,
@@ -136,12 +137,30 @@ class AppPage extends React.Component {
     })
   }
 
+
+  getSortByNameLeadingIcon (sortAssending, sortCategory) {
+    if(sortCategory !== 'name') return null;
+    if(sortAssending === true) {
+      return 'expand_less';
+    } else {
+      return 'expand_more';
+    }
+  }
+
+  getSortByLocationLeadingIcon (sortAssending, sortCategory) {
+    if(sortCategory !== 'location') return null;
+    if(sortAssending === true) {
+      return 'expand_less';
+    } else {
+      return 'expand_more';
+    }
+  }
+
   render() {
     const rawTableData = this.state.rawTableData;
     const searchInput = this.state.searchInput;
     const sortAssending = this.state.sortAssending;
     const sortCategory = this.state.sortCategory;
-
     return (
       <>
         <input
@@ -163,18 +182,18 @@ class AppPage extends React.Component {
                   onClick={()=>this.toggleSort('name')}
                   disabled={false}
                   visibile={true}
-                  leadingIcon={"expand_less"}
+                  leadingIcon={this.getSortByNameLeadingIcon(sortAssending, sortCategory)}
                 />
               </th>
               <th key="emppty1"></th>
               <th key="sortByLcation" colSpan={1}>
                 <BaseButton
-                  text={"Sort by name"}
+                  text={"Sort by location"}
                   type={"button"}
                   onClick={()=>this.toggleSort('location')}
                   disabled={false}
                   visibile={true}
-                  leadingIcon={"expand_less"}
+                  leadingIcon={this.getSortByLocationLeadingIcon(sortAssending, sortCategory)}
                 />
               </th>
               <th key="emppty2"></th>
