@@ -17,24 +17,5 @@
 - how to make a form
 - how to find a property of a module/class/object
 
-  ```
-  // class component
-  class Foo {
-    constructor (name) {
-      this.name = name
-    }
-  }
-  const moo = new Foo('Ushi-taro');
-  console.log(moo.name) // 'Ushi-taro'
-
-  // functional component
-  function Fooo(name){
-    this.name = name;
-  }
-  const mooooo = new Fooo('Ushi-jiro')
-  console.log(mooooo.name) // 'Ushi-jiro'
-  ```
-
-
 
 maybe? ¯\\_(ツ)_/¯
