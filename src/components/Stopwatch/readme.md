@@ -13,7 +13,7 @@
 ### What they (probably) want to know if you know
 - how to bind setInterval callback function
   - there are multiple ways to do this
-- how to life states up to a parent component
+- how to lift states up to a parent component
 - how to make a form
 - how to find a property of a module/class/object
 
